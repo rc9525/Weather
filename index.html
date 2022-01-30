@@ -1,42 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css"
-  />
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Weather Dashboard</title>
   </head>
-  <body>
-    <body>
-        <nav class="navbar navbar-dark bg-primary mb-3">
-            <div class="container">
-                <a href="#" class="navbar-brand">Weather.JS</a>
-            </div>
-        </nav>
-        <div class="container searchContainer">
-            <div class="search card card-body">
-                <h1>Get The Weather For a Location</h1>
-                <p class="lead">Enter Your Location</p>
-                <input type="text" id="searchUser" class="form-control" placeholder="Location">
-            </div>
-            <br>
-            <div id="profile"></div>
-        </div>
-        <div class="container text-center mt-2">
-            <button class="btn btn-primary" id="submit">Submit</button>
-        </div>
-        
-        <div id="content">
 
+  <body>
+    <header
+      class="container-fluid text-center text-white bg-dark p-2 weather-header"
+    >
+      <h1>Weather Dashboard</h1>
+    </header>
+
+    
+    <div class="container-fluid" style="max-width: 1400px">
+      <div class="row">
+        <aside class="col-lg-3 pb-3">
+          <h2 id="form-heading" class="mt-1 h3 form-label">
+            Search for a City:
+          </h2>
+          <form id="search-form" class="form">
+            <div class="form-inline form-group">
+              <div class="input-group">
+                <input
+                  class="form-input weather-search"
+                  type="text"
+                  id="search-input"
+                  placeholder="Miami"
+                  aria-labelledby="form-heading"
+                  aria-controls="today forecast"
+                />
+                <div class="input-group-append">
+                  <button
+                    type="submit"
+                    class="btn search-button"
+                    id="search-button"
+                    aria-label="submit search"
+                  >
+                    Search
+                  </button>
+                  <hr class="hr weather-hr" />
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="list-group" id="history"></div>
+        </aside>
+
+        <div class="col-lg-9 pb-3">
+          <section
+            id="today"
+            class="mt-3"
+            role="region"
+            aria-live="polite"
+          >
+          <h1 id="searched-city">City Name</h1>
+          <p id="current-temp">Temp: 20</p>
+          <p id="current-wind">Wind: 20</p>
+          <p id="current-humidity">Humidity: 20</p>
+          <p id="current-uv">UV Index: 5</p>
+        </section>
+        
+        <h3>5 day Forecast</h3>
+          <section
+            id="forecast"
+            class="row mt-3"
+            role="region"
+            aria-live="polite"
+          >
+            <div>Tomorrow</div>
+            <div>Day afterTomorrow</div>
+        </section>
         </div>
-        <footer class="mt-5 p-3 text-center bg-light">
-             Weather.js &copy;
-        </footer>
+      </div>
+    </div>
+
+    
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+      integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+      crossorigin="anonymous"
+    ></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js" 
+      integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" 
+      crossorigin="anonymous"
+    ></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js" 
+      integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" 
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
   </body>
-  <script src="fetch.js"></script>
-  <script src="ui.js"></script>
-  <script src="app.js"></script>
 </html>

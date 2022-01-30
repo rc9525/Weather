@@ -1,49 +1,50 @@
-class UI {
-    constructor() {
-      this.uiContainer = document.getElementById("content");
-      this.city;
-      this.defaultCity = "London";
-    }
-  
-    populateUI(data) {
-      //de-structure vars
-  
-      //add them to inner HTML
-  
-      this.uiContainer.innerHTML = `
-          
-          <div class="card mx-auto mt-5" style="width: 18rem;">
-              <div class="card-body justify-content-center">
-                  <h5 class="card-title">${data.name}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Highs of ${data.main.temp_max}. Lows of ${data.main.temp_min}</h6>
-                  <p class="card-text ">Weather conditions are described as: ${data.weather[0].description}</p>
-                  
-              </div>
-          </div>
-          
-          
-          `;
-    }
-  
-    clearUI() {
-      uiContainer.innerHTML = "";
-    }
-  
-    saveToLS(data) {
-      localStorage.setItem("city", JSON.stringify(data));
-    }
-  
-    getFromLS() {
-      if (localStorage.getItem("city" == null)) {
-        return this.defaultCity;
-      } else {
-        this.city = JSON.parse(localStorage.getItem("city"));
-      }
-  
-      return this.city;
-    }
-  
-    clearLS() {
-      localStorage.clear();
-    }
-  }
+function getCurrentWeatherData (event) {
+    event.preventDefault();
+
+    var searchInput = document.querySelector("#search-input");
+
+    var cityName = searchInput.value;
+
+    var url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=7583f92f7ca2f9b45d847d8993be7b42";
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        var searchedCity = document.querySelector("#searched-city");
+        searchedCity.textContent = cityName;
+
+        var currentTemp = document.querySelector("#current-temp");
+        currentTemp.textContent = "Temp: " + data.main.temp
+        var currentWind = document.querySelector ("#current-wind");
+        currentWind.textContent = "Wind: " + data.wind.speed
+
+        getForecastData();
+    })
+
+}
+
+function getForecastData () {
+
+    var searchInput = document.querySelector("#search-input");
+
+    var cityName = searchInput.value;
+
+    var url = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=7583f92f7ca2f9b45d847d8993be7b42";
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+
+        // DISPLAY THE DATA
+        console.log(data.list[0].main.temp)
+        console.log(data.list[8].main.temp)
+    })
+}
+
+var searchForm = document.querySelector("#search-form");
+
+searchForm.addEventListener("submit", getCurrentWeatherData)
