@@ -1,10 +1,17 @@
-{
-    font-family: "Rimouski";
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1;
 }
 
-body{
-    background-color: #293251;
-}
+    textarea {
+        background: transparent;
+        border: none;
+        resize: none;
+        color: #000000;
+        border-left: 1px solid black;
+        padding: 10px;
+      }
 
 .container{
     width: 300px;    
@@ -74,7 +81,7 @@ body{
     cursor: pointer;
 }
 
-.temperature-value p:hover{
+/* .temperature-value p:hover{
     
 }
 
@@ -97,7 +104,7 @@ body{
 
 .location{
     
-}
+} */
 
 .location p{
     margin: 0;
